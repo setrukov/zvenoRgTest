@@ -1,0 +1,23 @@
+{
+  "countryName_ru": "Россия",
+  "countryName_kz": "Казахстан",
+  "countryName_kg": "Киргизия",
+  "surName": "Ivanov",
+  "name": "Vasily",
+  "secondName": "Ivanovich",
+  "password": "888999Qq!",
+  "iin": "760724300757",
+  "inn": "438333294577",
+  "inn_kg" : "43833329457756",
+  "tgnl": "1234",
+  "bin": "760724300757",
+  "regNumber": "5163841579171",
+  "okpo_10": "9999999999",
+  "okpo_8": "99999999",
+  "ogrnip": "316861700133226",
+  "ogrn": "1053600591197",
+  "kpp": "999999999",
+  "companyFullName" : "Амстердам",
+  "companyAbbreviatedName" : "А",
+  "successMessage" : "Вы успешно подали заявку!"
+}

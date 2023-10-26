@@ -1,5 +1,6 @@
 package Test;
 import Pages.*;
+import Utils.FileUtils;
 import Utils.JsonUtils;
 import Utils.RandUtils;
 import Utils.TestDataUtils;
@@ -13,12 +14,15 @@ public class ZvenoRegTest extends BaseTest {
 
     @Test
     public void testRusIp() {
-
+        //методы PO не возвращают экземпляр PO,
+        //т.к. я не знаю, какого стиля вы придерживаетесь,
+        //я выбрал стиль, который нам показали на стажировке
         MainPage mainPage = new MainPage();
         mainPage.clickSignUpButton();
         RegPageOne regPageOne = new RegPageOne();
         String testCaseCountry = "ru";
         String testCaseOwnershipType = "ИП";
+        //заготовка для передачи параметров о стране и форме собственности через ddt аннотации
         String countryData = String.format("countryName_%s", testCaseCountry);
         String countryName = JsonUtils.getValue("testData.json", countryData);
         String countryFlag = testCaseCountry;
@@ -27,7 +31,8 @@ public class ZvenoRegTest extends BaseTest {
         String secondName = JsonUtils.getValue("testData.json","secondName");
         String email = String.format("%s@gmail.com",RandUtils.generateContent(10));
         String phoneNumber = RandUtils.generatePhoneNumber();
-        System.out.println(phoneNumber);
+        //так как для успешной регистрации нужны уникальные email и телефон,
+        //остальные данные получаем из json
         String password = JsonUtils.getValue("testData.json","password");
         String companyFullName = JsonUtils.getValue("testData.json","companyFullName");
         String companyAbbreviatedName = JsonUtils.getValue("testData.json","companyAbbreviatedName");
@@ -54,12 +59,16 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.inputINN(inn);
         regPageTwo.inputOKPO(okpo);
 
-        regPageTwo.uploadStateRegFile("stateReg.png");
-        regPageTwo.uploadTaxControlFile("taxControl.png");
+        regPageTwo.uploadStateRegFile(FileUtils.getResourceFile("stateReg.png"));
+        regPageTwo.uploadTaxControlFile(FileUtils.getResourceFile("taxControl.png"));
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
         Assert.assertEquals(regPageTwo.regMessageText(),successMessage);
+        //ассерты вынесены в тестовый метод, потому что .should(..)
+        //селенида вызываются непосредственно на элементах PO,
+        //на стажировке от нас требовали оставлять работать с элементами только
+        //на PO, а ассерты выполнять в тестовом методе.
     }
 
     @Test
@@ -106,9 +115,9 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.inputOKPO(okpo);
         regPageTwo.inputOGRN(ogrn);
         regPageTwo.inputKPP(kpp);
-        regPageTwo.uploadStateRegFile("stateReg.png");
-        regPageTwo.uploadTaxControlFile("taxControl.png");
-        regPageTwo.uploadAccessLetterUploadInputFile("accessLetter.png");
+        regPageTwo.uploadStateRegFile(FileUtils.getResourceFile("stateReg.png"));
+        regPageTwo.uploadTaxControlFile(FileUtils.getResourceFile("taxControl.png"));
+        regPageTwo.uploadAccessLetterUploadInputFile(FileUtils.getResourceFile("accessLetter.png"));
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
@@ -155,7 +164,7 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.inputTGNL(tgnl);
         regPageTwo.inputIIN(iin);
         regPageTwo.inputOKPO(okpo);
-        regPageTwo.uploadPersonalIdInputInputFile("persId.png");
+        regPageTwo.uploadPersonalIdInputInputFile(FileUtils.getResourceFile("persId.png"));
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
@@ -206,8 +215,8 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.inputRegNumber(regNumber);
         regPageTwo.inputBIN(bin);
         regPageTwo.inputOKPO(okpo);
-        regPageTwo.uploadStateRegFile("stateReg.png");
-        regPageTwo.uploadTaxControlFile("taxControl.png");
+        regPageTwo.uploadStateRegFile(FileUtils.getResourceFile("stateReg.png"));
+        regPageTwo.uploadTaxControlFile(FileUtils.getResourceFile("taxControl.png"));
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
@@ -255,8 +264,8 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.inputTGNL(tgnl);
         regPageTwo.inputINN(inn);
         regPageTwo.inputOKPO(okpo);
-        regPageTwo.uploadStateRegFile("stateReg.png");
-        regPageTwo.uploadTaxControlFile("taxControl.png");
+        regPageTwo.uploadStateRegFile(FileUtils.getResourceFile("stateReg.png"));
+        regPageTwo.uploadTaxControlFile(FileUtils.getResourceFile("taxControl.png"));
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
@@ -306,9 +315,9 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.inputINN(inn);
         regPageTwo.inputRegNumber(regNumber);
         regPageTwo.inputOKPO(okpo);
-        regPageTwo.uploadStateRegFile("stateReg.png");
-        regPageTwo.uploadTaxControlFile("taxControl.png");
-        regPageTwo.uploadAccessLetterUploadInputFile("accessLetter.png");
+        regPageTwo.uploadStateRegFile(FileUtils.getResourceFile("stateReg.png"));
+        regPageTwo.uploadTaxControlFile(FileUtils.getResourceFile("taxControl.png"));
+        regPageTwo.uploadAccessLetterUploadInputFile(FileUtils.getResourceFile("accessLetter.png"));
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");

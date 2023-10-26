@@ -10,7 +10,6 @@ public class TestDataUtils {
             return JsonUtils.getValue("testData.json","okpo_8");
         }
     }
-
     public static String getINN(String country) {
         final String countryKg = "kg";
         if (country.equals(countryKg)) {

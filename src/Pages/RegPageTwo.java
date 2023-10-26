@@ -27,9 +27,7 @@ public class RegPageTwo {
     private SelenideElement iinInputForm = $x("//input[contains(@input-label,'ИИН')]");
     private SelenideElement regNumberInputForm = $x("//input[contains(@input-label,'номер')]");
     private SelenideElement binInputForm = $x("//input[contains(@input-label,'БИН') and not(contains(@input-label,'ОКПО'))]");
-
     private SelenideElement stateRegUploadInput = $x("//span[contains(text(),'гос.регистрации')]/../../..//div[contains(@class,'slot') and contains(@class, 'input')]//input");
-
     private SelenideElement taxControlUploadInput = $x("//span[contains(text(),'нал.учет')]/../../..//div[contains(@class,'slot') and contains(@class, 'input')]//input");
     private SelenideElement accessLetterUploadInput = $x("//span[contains(text(),'доступа')]/../../..//div[contains(@class,'slot') and contains(@class, 'input')]//input");
     private SelenideElement personalIdInput = $x("//span[contains(text(),'Удостоверение')]/../../..//div[contains(@class,'slot') and contains(@class, 'input')]//input");
@@ -37,6 +35,8 @@ public class RegPageTwo {
     private SelenideElement sendApplication = $x("//button[contains(@name,'заявку')]");
 
     private SelenideElement successfulRegMessage = $x("//div[contains(text(),'Вы успешно подали заявку!')]");
+    //я не сделал разные PO для разных тестов, потому что думаю, что лучше передавать условия через аннотации, но еще не успел разобраться, как работать с ними в селениде
+
     public void selectACountryFromListbox(String country)
     {
         String countryLocator = String.format("//div[contains(@class,'content__active')]//div[contains(text(),'%s')]",country);
@@ -84,7 +84,6 @@ public class RegPageTwo {
     {
         innInputForm.setValue(inn);
     }
-
     public void inputKPP(String kpp)
     {
         kppInputForm.setValue(kpp);
@@ -101,7 +100,6 @@ public class RegPageTwo {
     {
         ogrnipInputForm.setValue(ogrnip);
     }
-
     public void inputRegNumber(String regNumber)
     {
         regNumberInputForm.setValue(regNumber);
@@ -114,33 +112,29 @@ public class RegPageTwo {
     {
         binInputForm.setValue(bin);
     }
-    public void uploadStateRegFile(String fileName)
+    public void uploadStateRegFile(File file)
     {
-        File file = new File(String.format("src/Resources/%s",fileName));
         stateRegUploadInput.uploadFile(file);
     }
 
-    public void uploadTaxControlFile(String fileName)
+    public void uploadTaxControlFile(File file)
     {
-        File file = new File(String.format("src/Resources/%s",fileName));
         taxControlUploadInput.uploadFile(file);
     }
-    public void uploadAccessLetterUploadInputFile(String fileName)
+    public void uploadAccessLetterUploadInputFile(File file)
     {
-        File file = new File(String.format("src/Resources/%s",fileName));
         accessLetterUploadInput.uploadFile(file);
     }
-    public void uploadPersonalIdInputInputFile(String fileName)
+    public void uploadPersonalIdInputInputFile(File file)
     {
-        File file = new File(String.format("src/Resources/%s",fileName));
         personalIdInput.uploadFile(file);
     }
+    //передавать так файлы очень удобно!
     public void checkAgreement() {
         if (agreementCheckbox.getAttribute("aria-checked").equals("false")) {
             agreementCheckbox.click();
         }
     }
-
 
     public void sendApplication() {
         sendApplication.click();

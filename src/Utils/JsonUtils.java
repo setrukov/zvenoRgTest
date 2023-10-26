@@ -9,8 +9,6 @@ import java.io.IOException;
 import java.io.Reader;
 
 public class JsonUtils {
-
-
     public static String getValue(String fileName, String keyName) {
 
         String filePath = String.format("./src/Resources/%s",fileName);
@@ -18,7 +16,6 @@ public class JsonUtils {
         JSONObject jsonObject;
         String value = "";
         Reader reader;
-
         try
         {
             reader = new FileReader(filePath);

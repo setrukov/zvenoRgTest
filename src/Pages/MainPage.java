@@ -7,7 +7,6 @@ import static com.codeborne.selenide.Selenide.$x;
 
 public class MainPage {
     public void clickSignUpButton() {
-       $x("//a[contains(@href,'reg')]").click();
+       $x("//a[contains(text(),'регистрацию')]").click();
     }
-
 }

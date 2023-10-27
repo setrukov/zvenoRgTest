@@ -12,7 +12,7 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 abstract public class BaseTest {
     private static String baseUrl = JsonUtils.getValue("config.json","url");
     public void setUp() {
-        //Configuration.browser = "firefox";
+        //Configuration.browser = "firefox"; //в файрфоксе запускается и работает
         open(baseUrl);
         getWebDriver().manage().window().maximize();
     }

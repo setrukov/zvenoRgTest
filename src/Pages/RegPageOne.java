@@ -22,6 +22,7 @@ public class RegPageOne {
     //в c# aquality selenium есть возможность передавать
     //в локатор переменную с помощью интерполяции строк
     //private IButton _CountryFlag(string country) => ElementFactory.GetButton(By.XPath($"//img[contains(@alt,'{country}')]"),"Country code selection by the flag");
+    //но в примерах с селенидом к элементам обращаются прямо в методах PO, так что надеюсь, это не проблема
 
     private SelenideElement nextRegPage = $x("//button[contains(@name,'Далее')]");
     public void InputSurname(String surname)

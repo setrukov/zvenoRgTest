@@ -2,11 +2,8 @@ package Pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebElementCondition;
-
 import java.io.File;
 import java.time.Duration;
-
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
@@ -65,7 +62,7 @@ public class RegPageTwo {
 
     public void SelectOwnershipTypeFromListbox(String ownershipType)
     {
-        String ownershipTypeLocator = String.format("//div[contains(@class,'content__active')]//div[contains(text(),'%s')]",ownershipType);
+        String ownershipTypeLocator = String.format("//div[contains(@class,'content') and contains(@class,'active')]//div[contains(text(),'%s')]",ownershipType);
         ownershipTypeToSelect = $x(ownershipTypeLocator);
         ownershipTypeDropdown.click();
         ownershipTypeToSelect.click();
@@ -74,9 +71,7 @@ public class RegPageTwo {
     public void selectAllCompanyTypes()
     {
         companyTypeDropdown.click();
-        for (SelenideElement companyType: companyTypeElements.asDynamicIterable()) {
-            companyType.click();
-        }
+        companyTypeElements.asFixedIterable().forEach(companyType -> companyType.click());
     }
 
     public void inputTGNL(String tgnl)
@@ -143,7 +138,8 @@ public class RegPageTwo {
         sendApplication.click();
     }
     public String regMessageText() {
-        Duration duration = Duration.ofSeconds(10);
+        final int intWaitDuration =10;
+        Duration duration = Duration.ofSeconds(intWaitDuration);
         return successfulRegMessage.shouldBe(visible,duration).getText();
     }
 

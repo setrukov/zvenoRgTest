@@ -14,9 +14,10 @@ public class ZvenoRegTest extends BaseTest {
 
     @Test
     public void testRusIp() {
-        //методы PO не возвращают экземпляр PO,
-        //т.к. я не знаю, какого стиля вы придерживаетесь,
-        //я выбрал стиль, который нам показали на стажировке
+        //методы PO не возвращают экземпляр PO.
+        //Т.к. я не знаю, какого стиля вы придерживаетесь,
+        //я выбрал стиль, который нам показали на стажировке,
+        //но понимаю, как переделать в fluent
         MainPage mainPage = new MainPage();
         mainPage.clickSignUpButton();
         RegPageOne regPageOne = new RegPageOne();
@@ -32,7 +33,7 @@ public class ZvenoRegTest extends BaseTest {
         String email = String.format("%s@gmail.com",RandUtils.generateContent(10));
         String phoneNumber = RandUtils.generatePhoneNumber();
         //так как для успешной регистрации нужны уникальные email и телефон,
-        //остальные данные получаем из json
+        //остальные данные получаем из testData.json
         String password = JsonUtils.getValue("testData.json","password");
         String companyFullName = JsonUtils.getValue("testData.json","companyFullName");
         String companyAbbreviatedName = JsonUtils.getValue("testData.json","companyAbbreviatedName");

@@ -23,7 +23,6 @@ public class ZvenoRegTest extends BaseTest {
         RegPageOne regPageOne = new RegPageOne();
         String testCaseCountry = "ru";
         String testCaseOwnershipType = "ИП";
-        //заготовка для передачи параметров о стране и форме собственности через ddt аннотации
         String countryData = String.format("countryName_%s", testCaseCountry);
         String countryName = JsonUtils.getValue("testData.json", countryData);
         String countryFlag = testCaseCountry;
@@ -71,7 +70,7 @@ public class ZvenoRegTest extends BaseTest {
         //ассерты вынесены в тестовый метод, потому что .should(..)
         //селенида вызываются непосредственно на элементах PO,
         //на стажировке от нас требовали оставлять работать с элементами только
-        //на PO, а ассерты выполнять в тестовом методе.
+        //на PO, а ассерты выполнять в тестовом методе. Еще требованием было избегать комментариев
     }
 
     @Test
@@ -280,7 +279,7 @@ public class ZvenoRegTest extends BaseTest {
         mainPage.clickSignUpButton();
         RegPageOne regPageOne = new RegPageOne();
         String testCaseCountry = "kg";
-        String testCaseOwnershipType = "ОсОО";
+        String testCaseOwnershipType = "ООО";
 
         String countryData = String.format("countryName_%s", testCaseCountry);
         String countryName = JsonUtils.getValue("testData.json", countryData);

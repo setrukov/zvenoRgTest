@@ -2,9 +2,12 @@ package Pages;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebElementCondition;
 
 import java.io.File;
+import java.time.Duration;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -140,7 +143,8 @@ public class RegPageTwo {
         sendApplication.click();
     }
     public String regMessageText() {
-        return successfulRegMessage.getText();
+        Duration duration = Duration.ofSeconds(10);
+        return successfulRegMessage.shouldBe(visible,duration).getText();
     }
 
 }

@@ -64,7 +64,9 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
-        Assert.assertEquals(regPageTwo.regMessageText(),successMessage);
+
+        Assert.assertEquals(successMessage,regPageTwo.regMessageText());
+
         //ассерты вынесены в тестовый метод, потому что .should(..)
         //селенида вызываются непосредственно на элементах PO,
         //на стажировке от нас требовали оставлять работать с элементами только
@@ -121,7 +123,7 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
-        Assert.assertEquals(regPageTwo.regMessageText(),successMessage);
+        Assert.assertEquals(successMessage,regPageTwo.regMessageText());
     }
 
     @Test
@@ -168,7 +170,7 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
-        Assert.assertEquals(regPageTwo.regMessageText(),successMessage);
+        Assert.assertEquals(successMessage,regPageTwo.regMessageText());
     }
 
     @Test
@@ -178,7 +180,7 @@ public class ZvenoRegTest extends BaseTest {
         RegPageOne regPageOne = new RegPageOne();
         String testCaseCountry = "kz";
         String testCaseOwnershipType = "ООО";
-
+        //в сценарии прописано ООО, поэтому тест падает, я бы уточнил, имелось ли в виду именно ООО, или нужна замена на ТОО. При замене тест проходит, как и для сценария Киргизя, ООО
         String countryData = String.format("countryName_%s", testCaseCountry);
         String countryName = JsonUtils.getValue("testData.json", countryData);
         String countryFlag = testCaseCountry;
@@ -220,7 +222,7 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
-        Assert.assertEquals(regPageTwo.regMessageText(),successMessage);
+        Assert.assertEquals(successMessage,regPageTwo.regMessageText());
     }
     @Test
     public void testKyrIP() {
@@ -269,7 +271,7 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
-        Assert.assertEquals(regPageTwo.regMessageText(),successMessage);
+        Assert.assertEquals(successMessage,regPageTwo.regMessageText());
     }
     @Test
     public void testKyrOOO() {
@@ -321,7 +323,7 @@ public class ZvenoRegTest extends BaseTest {
         regPageTwo.checkAgreement();
         regPageTwo.sendApplication();
         String successMessage = JsonUtils.getValue("testData.json","successMessage");
-        Assert.assertEquals(regPageTwo.regMessageText(),successMessage);
+        Assert.assertEquals(successMessage,regPageTwo.regMessageText());
     }
 }
 
